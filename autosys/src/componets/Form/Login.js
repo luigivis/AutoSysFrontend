@@ -1,9 +1,9 @@
 import {useState} from 'react';
-import {loginFields} from "../constants/formFields";
+import {loginFields} from "../../constants/formFields";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
-import Input from "./Input";
-
+import Input from "../Inputs/Input";
+import request from "../../utils/commonFetch"
 
 const fields = loginFields;
 let fieldsState = {};
@@ -16,25 +16,12 @@ export default function Login() {
         setLoginState({...loginState, [e.target.id]: e.target.value})
     }
 
+    const endpoint = `http://localhost:4001/api/v1/security/auth`;
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(loginState);
-        authenticateUser();
-    }
-
-    //Handle Login API Integration here
-    const authenticateUser = () => {
-        const endpoint = `http://localhost:4001/api/v1/security/auth`;
-
-        fetch(endpoint, {
-            method: 'POST', headers: {
-                'Content-Type': 'application/json'
-            }, body: JSON.stringify(loginState)
-
-        }).then(response => response.json())
-            .then(data => {
-            })
-            .catch(error => console.log(error))
+        const response = request.prototype.send(endpoint, 'POST', '', loginState);
+        console.log(response)
     }
 
     return (<form className="mt-8 space-y-6" onSubmit={handleSubmit}>

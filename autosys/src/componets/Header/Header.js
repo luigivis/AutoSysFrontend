@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import mygif from '../Login.gif'
+import userGif from '../../assets/img/user_animated.gif'
 
 export default function Header({heading, paragraph, linkName, linkUrl = "#"}) {
     return (
@@ -8,7 +8,7 @@ export default function Header({heading, paragraph, linkName, linkUrl = "#"}) {
                 <img
                     alt=""
                     className="h-14 w-14"
-                    src={mygif}/>
+                    src={userGif}/>
             </div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 {heading}
