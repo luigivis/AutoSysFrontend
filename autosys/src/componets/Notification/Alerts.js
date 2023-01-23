@@ -1,39 +1,32 @@
 import React from "react";
-import classNames from "classnames";
-import toast, { Toaster } from "react-hot-toast";
-import { MdOutlineClose } from "react-icons/md";
-import { HiLightningBolt } from "react-icons/hi";
-import styles from "../../App.css";
+import toast from "react-hot-toast";
+import {MdOutlineClose} from "react-icons/md";
+import {BiMessageAltError} from "react-icons/bi";
 
-const notify = () =>
+const notify = async (status, description) =>
     toast.custom(
         (t) => (
             <div
                 className="notificationWrapper">
                 <div className="iconWrapper">
-                    <HiLightningBolt />
+                    <BiMessageAltError/>
                 </div>
                 <div className="contentWrapper">
-                    <h1>New version available</h1>
+                    <h1>{status}</h1>
                     <p>
-                        An improved version of VESSEL is now available, refresh to update.
+                        {description}
                     </p>
                 </div>
                 <div className="closeIcon" onClick={() => toast.dismiss(t.id)}>
-                    <MdOutlineClose />
+                    <MdOutlineClose/>
                 </div>
             </div>
         ),
-        { id: "unique-notification", position: "top-center" }
+        {id: "unique-notification", position: "top-center"}
     );
 
-const Alert = () => {
-    return (
-        <div>
-            <button onClick={notify}>Notify</button>
-            <Toaster />
-        </div>
-    );
+const Alert = async (status, description) => {
+    return await (notify(status, description));
 };
 
 export default Alert;

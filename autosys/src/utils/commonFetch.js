@@ -1,32 +1,24 @@
-import React, {Component} from 'react';
+const send = async (endpoint, httpMethod, token, jsonBody) => {
 
-class sendToServer {
+    await fetch(endpoint, {
+        method: httpMethod,
+        headers: {
+            'Content-Type': 'application/json',
+            'JWT': token
+        },
+        body: JSON.stringify(jsonBody)
 
-    async send(endpoint, httpMethod, token, jsonBody) {
-
-        fetch(endpoint, {
-            method: httpMethod,
-            headers: {
-                'Content-Type': 'application/json',
-                'JWT': token
-            },
-            body: JSON.stringify(jsonBody)
-
-        }).then(response => {
-
-            if (!response.ok) {
-                response.text().then(res => {
-                    console.log(res)
-                    return res;
-                })
-            }
-            if (response.ok) {
-                return response.json();
-            }
-        })
-
-    }
+    }).then(async response => {
+        if (!response.ok) {
+            response.text().then(async res => {
+                return res;
+            })
+        }
+        if (response.ok) {
+            return await response.json();
+        }
+    })
 
 }
 
-export default sendToServer;
+export default send;
