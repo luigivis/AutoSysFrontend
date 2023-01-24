@@ -4,6 +4,7 @@ import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "../Inputs/Input";
 import {sendPost} from "../../utils/commonFetch"
+import {getPathLoginByForm} from "../../utils/endpointCatalog"
 
 
 const fields = loginFields;
@@ -17,11 +18,9 @@ export default function Login() {
         setLoginState({...loginState, [e.target.id]: e.target.value})
     }
 
-    const endpoint = `http://localhost:4001/api/v1/security/auth`;
-
     const handleSubmit = async (e) => {
         await e.preventDefault();
-        sendPost(endpoint, loginState, "");
+        sendPost(getPathLoginByForm(), loginState, "");
 
     }
     return (<form className="mt-8 space-y-6" onSubmit={handleSubmit}>

@@ -1,5 +1,10 @@
 #!/bin/bash
 echo "***************************************"
+echo "*++++++Executing Python Script*********"
+echo "***************************************"
+python3 get_server_info.py
+
+echo "***************************************"
 echo "*++++++AutoSys Generation Date*********"
 echo "***************************************"
 echo $(date)
@@ -17,6 +22,7 @@ echo "******Generating environment file******"
 echo "***************************************"
 cat <<EOF >.env
 PORT=7000
+SERVER_INSTANCE={IPADDRESS}
 EOF
 
 echo
@@ -34,6 +40,5 @@ pm2 delete AutoSys-Frontend:7000
 
 echo "Starting"
 pm2 start --name=AutoSys-Frontend:7000 npm -- start
-pm2 start autosys/.app.config.json
 
 cd ../
