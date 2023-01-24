@@ -21,7 +21,7 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         await e.preventDefault();
-        await sendPost(endpoint, loginState, "");
+        sendPost(endpoint, loginState, "");
 
     }
     return (<form className="mt-8 space-y-6" onSubmit={handleSubmit}>
