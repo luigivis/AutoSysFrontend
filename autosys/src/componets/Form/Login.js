@@ -3,9 +3,8 @@ import {loginFields} from "../../constants/formFields";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "../Inputs/Input";
-import Request from "../../utils/commonFetch"
-import Alerts from "../Notification/Alerts";
-import axios from "axios";
+import {sendPost} from "../../utils/commonFetch"
+
 
 const fields = loginFields;
 let fieldsState = {};
@@ -19,28 +18,10 @@ export default function Login() {
     }
 
     const endpoint = `http://localhost:4001/api/v1/security/auth`;
-    const createPost = async () => {
-        try {
-
-            const res = await axios.post(endpoint, loginState)
-            return JSON.stringify(res.data);
-        } catch (error) {
-            console.log()
-
-            return  JSON.stringify(error.response.data);
-
-        }
-
-    }
 
     const handleSubmit = async (e) => {
         await e.preventDefault();
-        // const response = await Request(endpoint, 'POST', '', loginState);
-        const response = await createPost();
-        const obj = JSON.parse(response);
-        // await response.text();
-        Alerts("asdj", obj.status.description);
-        console.log(response)
+        await sendPost(endpoint, loginState, "");
 
     }
     return (<form className="mt-8 space-y-6" onSubmit={handleSubmit}>
