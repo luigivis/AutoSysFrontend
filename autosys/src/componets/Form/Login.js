@@ -4,7 +4,7 @@ import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "../Inputs/Input";
 import {sendPost} from "../../utils/commonFetch"
-import {getPathLoginByForm} from "../../utils/endpointCatalog"
+import getPathLoginByForm from "../../utils/endpointCatalog"
 
 
 const fields = loginFields;
@@ -21,9 +21,12 @@ export default function Login() {
     const handleSubmit = async (e) => {
         await e.preventDefault();
         sendPost(getPathLoginByForm(), loginState, "");
+        console.log(process.env.REACT_APP_MY_ENVIRONMENT_VARIABLE);
+
 
     }
     return (<form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+
         <div className="-space-y-px">
             {fields.map(field => <Input
                 key={field.id}

@@ -15,10 +15,10 @@ print(f"IP Public: {ip_public}")
 if ip_public == "146.190.144.220":
     ip_replace = "146.190.144.220"
 
-with open('execute.sh', 'r') as file :
+with open('autosys/.env', 'r') as file :
   filedata = file.read()
 
 filedata = filedata.replace('{IPADDRESS}', ip_replace)
 
-with open('execute.sh', 'w') as file:
+with open('autosys/.env', 'w') as file:
   file.write(filedata)
