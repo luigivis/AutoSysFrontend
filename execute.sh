@@ -1,9 +1,24 @@
 #!/bin/bash
+cd autosys/
+
+echo
+echo "***************************************"
+echo "******Generating environment file******"
+echo "***************************************"
+cat <<EOF >.env
+PORT=7000
+REACT_APP_IP_ADDRESS={IPADDRESS}
+EOF
+
+echo
 echo "***************************************"
 echo "*++++++Executing Python Script*********"
 echo "***************************************"
+cd ../
 python3 get_server_info.py
+cd autosys/
 
+echo
 echo "***************************************"
 echo "*++++++AutoSys Generation Date*********"
 echo "***************************************"
@@ -13,17 +28,8 @@ echo
 echo "***************************************"
 echo "*++++++Executing BUILD and run ********"
 echo "***************************************"
-cd autosys/
 npm install
-
-echo
-echo "***************************************"
-echo "******Generating environment file******"
-echo "***************************************"
-cat <<EOF >.env
-PORT=7000
-SERVER_INSTANCE={IPADDRESS}
-EOF
+npm audit fix --force
 
 echo
 echo "***************************************"
