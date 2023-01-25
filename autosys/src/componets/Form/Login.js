@@ -21,6 +21,10 @@ export default function Login() {
     const handleSubmit = async (e) => {
         await e.preventDefault();
         sendPost(getPathLoginByForm(), loginState, "");
+
+        // store the user in localStorage
+        localStorage.setItem(loginState, sendPost.data)
+        console.log(sendPost.data)
         console.log(process.env.REACT_APP_MY_ENVIRONMENT_VARIABLE);
 
 
