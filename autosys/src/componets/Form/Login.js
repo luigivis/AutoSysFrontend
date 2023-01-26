@@ -22,11 +22,7 @@ export default function Login() {
         await e.preventDefault();
         sendPost(getPathLoginByForm(), loginState, "");
 
-        // store the user in localStorage
-        localStorage.setItem(loginState, sendPost.data)
-        console.log(sendPost.data)
-        console.log(process.env.REACT_APP_MY_ENVIRONMENT_VARIABLE);
-
+        window.localStorage.setItem('Credenciales', JSON.stringify(loginState));
 
     }
     return (<form className="mt-8 space-y-6" onSubmit={handleSubmit}>

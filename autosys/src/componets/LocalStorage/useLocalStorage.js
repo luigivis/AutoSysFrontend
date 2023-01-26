@@ -19,7 +19,7 @@ export function useLocalStorage(key, inicialValue) {
             console.log(error)
         }
     }
+    return {storedValue, setValue}
+
 }
 
-return [storedValue, setValue];
-}
