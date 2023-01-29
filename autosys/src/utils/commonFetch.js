@@ -22,7 +22,10 @@ const sendPost = async (endpoint, jsonBody, token) => {
 
     try {
         const res = await axios.post(endpoint, jsonBody, config)
+      
         await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
+        console.log(res.headers.get("jwt"))
+    window.sessionStorage.setItem("sessionAuth",res.headers.get("JWT"));
         return JSON.stringify(res.data);
     } catch (error) {
         getJsonError(error);
