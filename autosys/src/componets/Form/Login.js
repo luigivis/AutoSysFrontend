@@ -1,10 +1,10 @@
-import {useState} from 'react';
+
 import {loginFields} from "../../constants/formFields";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "../Inputs/Input";
-import {sendPost} from "../../utils/commonFetch"
-import getPathLoginByForm from "../../utils/endpointCatalog"
+import {sendGet, sendPostLogin} from "../../utils/commonFetch"
+import {getPathLoginByForm} from "../../utils/endpointCatalog"
 
 
 const fields = loginFields;
@@ -12,18 +12,18 @@ let fieldsState = {};
 fields.forEach(field => fieldsState[field.id] = '');
 
 export default function Login() {
+    const searchToken=()=>{
+        sendGet(getPathLoginByForm(),"");
+        console.log(searchToken);
+    }
     const [loginState, setLoginState] = useState(fieldsState);
-
     const handleChange = (e) => {
         setLoginState({...loginState, [e.target.id]: e.target.value})
     }
 
     const handleSubmit = async (e) => {
         await e.preventDefault();
-        sendPost(getPathLoginByForm(), loginState, "");
-
-        window.localStorage.setItem('Credenciales', JSON.stringify(loginState));
-
+        sendPostLogin(getPathLoginByForm(), loginState, "", e.nativeEvent.target[2].checked);
     }
     return (<form className="mt-8 space-y-6" onSubmit={handleSubmit}>
 

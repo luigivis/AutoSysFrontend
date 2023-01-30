@@ -3,8 +3,8 @@ export default function FormExtra() {
         <div className="flex items-center justify-between ">
             <div className="flex items-center">
                 <input
-                    id="remember-me"
-                    name="remember-me"
+                    id="rememberMe"
+                    name="rememberMme"
                     type="checkbox"
                     className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
                 />
