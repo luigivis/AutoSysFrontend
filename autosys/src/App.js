@@ -1,9 +1,11 @@
 import './App.css';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/Login/Login"
-import {Toaster} from "react-hot-toast";
-import {setupTimers} from "./utils/logOutAutomatically"
-import {searchToken} from "./utils/onLoadSearchToken";
+import { Toaster } from "react-hot-toast";
+import { setupTimers } from "./utils/logOutAutomatically"
+import { searchToken }  from "./utils/onLoadSearchToken";
+import DashboardPage from  "./pages/Dashboard/Dashboard";
+
 
 const wrapper =() =>{
     searchToken();
@@ -18,7 +20,8 @@ function App() {
             <div className="max-w-md w-full space-y-8">
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<LoginPage/>}/>
+                        <Route path="/login" element={<LoginPage/>}/>
+                        <Route path="/" element={<DashboardPage/>}/>
                     </Routes>
                 </BrowserRouter>
             </div>

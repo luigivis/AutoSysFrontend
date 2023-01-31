@@ -1,13 +1,11 @@
-import React from "react";
 import  {sendGet} from "./commonFetch";
 import {getPathLoginByToken} from "./endpointCatalog";
 
 
-const searchToken = () => {
-   const sessionStorageValue = window.sessionStorage.getItem('localAuth');
-   const localStorageValue = window.localStorage.getItem("sessionAuth");
+const searchToken =  () => {
+   const sessionStorageValue = window.sessionStorage.getItem('sessionAuth');
+   const localStorageValue = window.localStorage.getItem("localAuth");
 
-   console.log(localStorageValue);
    console.log(sessionStorageValue);
 
    if(sessionStorageValue ===null){
@@ -33,5 +31,6 @@ const searchToken = () => {
         <button onClick={() => navigate('/')}>
         {/ ... */}
    );
+
 }
 export  {searchToken};

@@ -1,14 +1,12 @@
+import { redirect, useNavigate } from "react-router-dom";
 const timeoutInMS = 1*60*1000; // 3 minutes -> 3 * 60 * 1000
 let timeoutId;
 
 const handleInactive=() =>{
     localStorage.removeItem("localAuth");
     sessionStorage.removeItem("sessionAuth");
-    return (
-        {/* ... /}
-        <button onClick={() => navigate('/')}>
-        {/ ... */}
-    );
+    // window.location.replace("/");
+
 }
 
 const startTimer = () => {
