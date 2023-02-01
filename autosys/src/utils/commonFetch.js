@@ -22,7 +22,9 @@ const sendPost = async (endpoint, jsonBody, token) => {
 
     try {
         const res = await axios.post(endpoint, jsonBody, config)
+      
         await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
+    window.sessionStorage.setItem("sessionAuth",res.headers.get("JWT"));
         return JSON.stringify(res.data);
     } catch (error) {
         getJsonError(error);
@@ -30,6 +32,42 @@ const sendPost = async (endpoint, jsonBody, token) => {
 
 }
 
+/**
+ * Make Login Post with Axios and Execute Alert
+ *
+ * @param {string} endpoint The url to make Post
+ * @param {string} jsonBody The json data
+ * @param {string} token The Token for the server
+ * @param {boolean} rememberMe The rememberMe value
+ *
+ * @return {string} Return the JSON
+ */
+const sendPostLogin = async (endpoint, jsonBody, token, rememberMe) => {
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'JWT': token
+        }
+    };
+
+    try {
+        const res = await axios.post(endpoint, jsonBody, config)
+
+        await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
+        if(rememberMe){
+            localStorage.setItem("localAuth",res.headers.get("JWT"));
+        }
+        window.sessionStorage.setItem("sessionAuth",res.headers.get("JWT"));
+        return JSON.stringify(res.data);
+    } catch (error) {
+        window.sessionStorage.removeItem("sessionAuth");
+        window.localStorage.removeItem("localAuth");
+        getJsonError(error);
+    }
+
+
+}
 /**
  * Make Get with Axios and Execute Alert
  *
@@ -46,13 +84,14 @@ const sendGet = async (endpoint, token) => {
             'JWT': token
         }
     };
-
     try {
-        const res = await axios.post(endpoint, config)
+        const res = await axios.get(endpoint, config)
         await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
         return JSON.stringify(res.data);
     }
     catch (error) {
+        window.sessionStorage.removeItem("sessionAuth");
+        window.localStorage.removeItem("localAuth");
         getJsonError(error);
     }
 
@@ -103,4 +142,4 @@ const getJsonError = async (error) => {
     }
 }
 
-export {sendPost, sendGet, sendPut};
+export {sendPost, sendGet, sendPut, sendPostLogin};
