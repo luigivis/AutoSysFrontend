@@ -6,9 +6,7 @@ const searchToken =  () => {
    const sessionStorageValue = window.sessionStorage.getItem('sessionAuth');
    const localStorageValue = window.localStorage.getItem("localAuth");
 
-   console.log(sessionStorageValue);
-
-   if(sessionStorageValue ===null){
+   if(sessionStorageValue !==null){
       sendGet(getPathLoginByToken(),sessionStorageValue);
       return (
           {/* ... /}
@@ -17,7 +15,7 @@ const searchToken =  () => {
       );
    }
 
-   if(localStorageValue === null){
+   if(localStorageValue !== null){
       sendGet(getPathLoginByToken(),localStorageValue);
       return (
           {/* ... /}

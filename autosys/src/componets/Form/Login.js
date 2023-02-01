@@ -3,7 +3,7 @@ import {loginFields} from "../../constants/formFields";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "../Inputs/Input";
-import {sendGet, sendPostLogin} from "../../utils/commonFetch"
+import { sendPostLogin } from "../../utils/commonFetch"
 import {getPathLoginByForm} from "../../utils/endpointCatalog"
 
 
@@ -12,10 +12,7 @@ let fieldsState = {};
 fields.forEach(field => fieldsState[field.id] = '');
 
 export default function Login() {
-    const searchToken=()=>{
-        sendGet(getPathLoginByForm(),"");
-        console.log(searchToken);
-    }
+
     const [loginState, setLoginState] = useState(fieldsState);
     const handleChange = (e) => {
         setLoginState({...loginState, [e.target.id]: e.target.value})

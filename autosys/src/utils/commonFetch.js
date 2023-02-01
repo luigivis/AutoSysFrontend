@@ -24,7 +24,6 @@ const sendPost = async (endpoint, jsonBody, token) => {
         const res = await axios.post(endpoint, jsonBody, config)
       
         await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
-        console.log(res.headers.get("jwt"))
     window.sessionStorage.setItem("sessionAuth",res.headers.get("JWT"));
         return JSON.stringify(res.data);
     } catch (error) {
@@ -62,6 +61,8 @@ const sendPostLogin = async (endpoint, jsonBody, token, rememberMe) => {
         window.sessionStorage.setItem("sessionAuth",res.headers.get("JWT"));
         return JSON.stringify(res.data);
     } catch (error) {
+        window.sessionStorage.removeItem("sessionAuth");
+        window.localStorage.removeItem("localAuth");
         getJsonError(error);
     }
 
@@ -83,7 +84,6 @@ const sendGet = async (endpoint, token) => {
             'JWT': token
         }
     };
-console.log(config);
     try {
         const res = await axios.get(endpoint, config)
         await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
