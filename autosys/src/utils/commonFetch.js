@@ -90,6 +90,8 @@ const sendGet = async (endpoint, token) => {
         return JSON.stringify(res.data);
     }
     catch (error) {
+        window.sessionStorage.removeItem("sessionAuth");
+        window.localStorage.removeItem("localAuth");
         getJsonError(error);
     }
 
