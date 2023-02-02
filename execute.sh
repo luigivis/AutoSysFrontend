@@ -26,6 +26,12 @@ echo $(date)
 
 echo
 echo "***************************************"
+echo "*******Removing nodeModule ************"
+echo "***************************************"
+rm -rf node_modules/
+
+echo
+echo "***************************************"
 echo "*++++++Executing BUILD and run ********"
 echo "***************************************"
 npm install
