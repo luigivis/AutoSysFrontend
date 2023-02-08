@@ -59,6 +59,7 @@ const sendPostLogin = async (endpoint, jsonBody, token, rememberMe) => {
             localStorage.setItem("localAuth",res.headers.get("JWT"));
         }
         window.sessionStorage.setItem("sessionAuth",res.headers.get("JWT"));
+        window.location.href = '/dashboard';
         return JSON.stringify(res.data);
     } catch (error) {
         window.sessionStorage.removeItem("sessionAuth");
