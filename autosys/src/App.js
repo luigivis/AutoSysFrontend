@@ -1,37 +1,31 @@
 import './App.css';
-import {BrowserRouter, Route, Routes, useLocation} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import LoginPage from "./pages/Login/Login"
 import { Toaster } from "react-hot-toast";
 import { setupTimers } from "./utils/logOutAutomatically"
 import { searchToken }  from "./utils/onLoadSearchToken";
 import Dashboard from  "./pages/Dashboard/Dashboard";
-import Dashboard_User from  "./pages/Dashboard/Dashboard_User/Dashboard_User";
+import DashboardUser from "./pages/User/User";
 
-
-
-const wrapper =() =>{
-    searchToken();
-    setupTimers();
-
+const wrapper = async () =>{
+    await searchToken();
+    await setupTimers();
 }
 
 function App() {
     return (
-
         <div onLoad={wrapper}>
-
             <Toaster/>
             <div>
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<LoginPage/>}/>
                         <Route path="/Dashboard" element={<Dashboard/>}/>
-                        <Route path="/users" element={<Dashboard_User/>}/>
+                        <Route path="/users" element={<DashboardUser/>}/>
                     </Routes>
                 </BrowserRouter>
             </div>
         </div>
-
     );
 }
 

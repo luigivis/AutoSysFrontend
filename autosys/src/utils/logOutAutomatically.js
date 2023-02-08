@@ -4,8 +4,6 @@ let timeoutId;
 const handleInactive=() =>{
     localStorage.removeItem("localAuth");
     sessionStorage.removeItem("sessionAuth");
-    // window.location.replace("/");
-
 }
 
 const startTimer = () => {

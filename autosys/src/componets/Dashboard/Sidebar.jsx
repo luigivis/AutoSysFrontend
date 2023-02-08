@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-// Icons
 import {
   RiHome3Line,
   RiWalletLine,
   RiMore2Fill,
   RiCloseFill,
 } from "react-icons/ri";
-import  {TbReportAnalytics} from 'react-icons/tb'
-import  {FaUserAlt} from 'react-icons/fa'
-import  {HiOutlineUserGroup} from 'react-icons/hi'
+import  {TbReportAnalytics} from 'react-icons/tb';
+import  {FaUserAlt} from 'react-icons/fa';
+import  {HiOutlineUserGroup} from 'react-icons/hi';
+import {sendGetLogOut} from "../../utils/commonFetch";
 
 const Sidebar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -22,7 +22,7 @@ const Sidebar = () => {
         {/* Profile */}
         <div className="flex flex-col items-center justify-center p-8 gap-2 h-[30vh]">
           <img
-              src={require('../../assets/img/logo.jpeg')}
+              src={require('../../assets/img/logo.png')}
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
           />
           <h1 className="text-xl text-white font-bold">Lapsys</h1>
@@ -62,8 +62,7 @@ const Sidebar = () => {
             </a>
           </nav>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl">
-            <p className="text-gray-400">Having troubles?</p>
-            <a href="#">Contact us</a>
+            <button onClick={ sendGetLogOut }>Log Out</button>
           </div>
         </div>
       </div>

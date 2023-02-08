@@ -1,7 +1,7 @@
-import Sidebar from "../../../componets/Dashboard/Sidebar";
+import Sidebar from "../../componets/Dashboard/Sidebar";
 import {RiSearch2Line} from "react-icons/ri";
 
-export default function Dashboard_User() {
+export default function DashboardUser() {
     return (
             <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">
 
@@ -19,4 +19,4 @@ export default function Dashboard_User() {
             </div>
     )
 }
-export {Dashboard_User};
+export {DashboardUser};

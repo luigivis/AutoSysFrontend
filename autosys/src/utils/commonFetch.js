@@ -1,6 +1,7 @@
 import axios from "axios";
 import Alerts from "../componets/Notification/Alerts";
 import {factoryCodeMessage} from "./statusCodeResponse"
+import { getPathLogOut } from "../utils/endpointCatalog"
 
 /**
  * Make Post with Axios and Execute Alert
@@ -69,6 +70,7 @@ const sendPostLogin = async (endpoint, jsonBody, token, rememberMe) => {
 
 
 }
+
 /**
  * Make Get with Axios and Execute Alert
  *
@@ -87,6 +89,7 @@ const sendGet = async (endpoint, token) => {
     };
     try {
         const res = await axios.get(endpoint, config)
+
         await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
         return JSON.stringify(res.data);
     }
@@ -98,6 +101,39 @@ const sendGet = async (endpoint, token) => {
 
 }
 
+/**
+ * Make Get Login By token with Axios and Execute Alert
+ *
+ * @param {string} endpoint The url to make Get
+ * @param {string} token The Token for the server
+ *
+ * @return {string} Return the JSON
+ */
+const sendGetLoginByToken = async (endpoint, token) => {
+
+    console.log("sendGetLoginByToken");
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'JWT': token
+        }
+    };
+    try {
+        const res = await axios.get(endpoint, config)
+
+        if (window.location.pathname === "/"){
+            await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
+        }
+
+        return JSON.stringify(res.data);
+    }
+    catch (error) {
+        window.sessionStorage.removeItem("sessionAuth");
+        window.localStorage.removeItem("localAuth");
+        getJsonError(error);
+    }
+
+}
 /**
  * Make Put with Axios and Execute Alert
  *
@@ -143,4 +179,47 @@ const getJsonError = async (error) => {
     }
 }
 
-export {sendPost, sendGet, sendPut, sendPostLogin};
+/**
+ * Make Get LogOut action with Axios and Execute Alert
+ *
+ * @param {string} endpoint The url to make Get
+ * @param {string} token The Token for the server
+ *
+ * @return {string} Return the JSON
+ */
+const sendGetLogOut = async () => {
+
+    const sessionStorageValue = window.sessionStorage.getItem('sessionAuth');
+    const localStorageValue = window.localStorage.getItem("localAuth");
+
+    if (sessionStorageValue !== null){
+        window.sessionStorage.removeItem('sessionAuth');
+    }
+
+    if (localStorageValue !== null){
+        window.sessionStorage.removeItem('localAuth');
+    }
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'JWT': sessionStorageValue || localStorageValue
+        }
+    };
+
+    console.log(config)
+    try {
+        const res = await axios.get(getPathLogOut(), config)
+
+        window.location.href = "/";
+
+        return JSON.stringify(res.data);
+    }
+    catch (error) {
+        window.sessionStorage.removeItem("sessionAuth");
+        window.localStorage.removeItem("localAuth");
+        getJsonError(error);
+    }
+
+}
+export {sendPost, sendGet, sendPut, sendPostLogin, sendGetLoginByToken, sendGetLogOut};

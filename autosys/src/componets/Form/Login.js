@@ -6,7 +6,6 @@ import Input from "../Inputs/Input";
 import { sendPostLogin } from "../../utils/commonFetch"
 import {getPathLoginByForm} from "../../utils/endpointCatalog"
 
-
 const fields = loginFields;
 let fieldsState = {};
 fields.forEach(field => fieldsState[field.id] = '');
