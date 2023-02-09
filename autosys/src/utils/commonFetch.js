@@ -94,8 +94,6 @@ const sendGet = async (endpoint, token) => {
         return JSON.stringify(res.data);
     }
     catch (error) {
-        window.sessionStorage.removeItem("sessionAuth");
-        window.localStorage.removeItem("localAuth");
         getJsonError(error);
     }
 
@@ -216,8 +214,12 @@ const sendGetLogOut = async () => {
         return JSON.stringify(res.data);
     }
     catch (error) {
-        window.sessionStorage.removeItem("sessionAuth");
-        window.localStorage.removeItem("localAuth");
+
+        if(error.response.data.status.code === 401){
+            window.sessionStorage.removeItem("sessionAuth");
+            window.localStorage.removeItem("localAuth");
+        }
+
         getJsonError(error);
     }
 

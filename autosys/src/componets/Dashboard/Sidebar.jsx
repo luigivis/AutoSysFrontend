@@ -9,6 +9,7 @@ import  {TbReportAnalytics} from 'react-icons/tb';
 import  {FaUserAlt} from 'react-icons/fa';
 import  {HiOutlineUserGroup} from 'react-icons/hi';
 import {sendGetLogOut} from "../../utils/commonFetch";
+import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -30,36 +31,22 @@ const Sidebar = () => {
         {/* Nav */}
         <div className="bg-[#3F485B] p-8 rounded-tr-[100px] h-[70vh] overflow-y-scroll no-scrollbar flex flex-col justify-between gap-8">
           <nav className="flex flex-col gap-8">
-            <a
-              href="/Dashboard"
+            <button
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
             >
+             <NavLink to={`/dashboard`}>
               <RiHome3Line /> Home
-            </a>
-            <a
-              href="/users"
+             </NavLink>
+            </button>
+
+            <button
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
             >
+              <NavLink to={`/dashboard/users`}>
               <FaUserAlt /> Users
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
-            >
-              <RiWalletLine /> Inventory
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
-            >
-              <HiOutlineUserGroup /> Employee
-            </a>
-            <a
-                href="#"
-                className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
-            >
-              <TbReportAnalytics /> Reports
-            </a>
+            </NavLink>
+            </button>
+
           </nav>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl">
             <button onClick={ sendGetLogOut }>Log Out</button>
@@ -69,7 +56,7 @@ const Sidebar = () => {
       {/* Button mobile */}
       <button
         onClick={() => setShowMenu(!showMenu)}
-        className="lg:hidden fixed right-4 bottom-4 text-2xl bg-primary-900 p-2.5 rounded-full text-white z-50"
+        className="lg:hidden fixed right-4 bottom-4 text-2xl bg-[#3F485B] p-2.5 rounded-full text-white z-50"
       >
         {showMenu ? <RiCloseFill /> : <RiMore2Fill />}
       </button>
