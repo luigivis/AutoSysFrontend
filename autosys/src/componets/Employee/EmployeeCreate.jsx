@@ -105,7 +105,7 @@ export default function Modal() {
                                     </label>
 
                                     <label class="block">
-                                        <span class="text-gray-700">Email</span>
+                                        <span class="text-gray-700">Emaill</span>
                                         <input onChange={(e) => setEmail(e.target.value)}
                                             class="form-input mt-1 block w-full">
                                         </input>
