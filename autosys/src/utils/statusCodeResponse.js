@@ -1,10 +1,10 @@
 const factoryCodeMessage = (statusCode) => {
 
-    if (statusCode === 200){
+    if (statusCode >= 200 && statusCode <= 300) {
         return "SUCCESS";
     }
 
-    if (statusCode >= 400 && statusCode <= 500){
+    if (statusCode >= 400 && statusCode <= 500) {
         return "WARNING";
     }
 
@@ -12,4 +12,4 @@ const factoryCodeMessage = (statusCode) => {
 
 }
 
-export {factoryCodeMessage};
+export { factoryCodeMessage };

@@ -1,28 +1,51 @@
-import './App.css';
-import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
-import LoginPage from "./pages/Login/Login"
-import { Toaster } from "react-hot-toast";
-import { setupTimers } from "./utils/logOutAutomatically"
-import { searchToken }  from "./utils/onLoadSearchToken";
-import Dashboard from  "./pages/Dashboard/Dashboard";
+import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import { setupTimers } from './utils/logOutAutomatically'
 
-const wrapper = async () =>{
-    await searchToken();
-    await setupTimers();
+import LoginPage from './pages/Login/Login'
+import Dashboard from './pages/Dashboard/Dashboard'
+import DashboardUser from './pages/User/User';
+
+import ProtectedRoute from './componets/ProtectedRoute/ProtectedRoute'
+import DashboardEmployee from './pages/Employee/Employee'
+
+const wrapper = async () => {
+    await setupTimers()
 }
 
 function App() {
     return (
         <div onLoad={wrapper}>
-            <Toaster/>
+            <Toaster />
             <div>
+                <Router>
                     <Routes>
-                        <Route path="/" element={<LoginPage/>}/>
-                        <Route path="/Dashboard/*" element={<Dashboard/>}/>
+                        <Route path="/" element={<LoginPage />} />
+                        <Route
+                            path="dashboard"
+                            element={
+                                <ProtectedRoute>
+                                    <Dashboard />
+                                </ProtectedRoute>
+                            }
+                        >
+                            <Route path="users" element={
+                                <ProtectedRoute>
+                                    <DashboardUser />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="employees" element={
+                                <ProtectedRoute>
+                                    <DashboardEmployee />
+                                </ProtectedRoute>
+                            } />
+                        </Route>
                     </Routes>
+                </Router>
             </div>
         </div>
-    );
+    )
 }
 
-export default App;
+export default App

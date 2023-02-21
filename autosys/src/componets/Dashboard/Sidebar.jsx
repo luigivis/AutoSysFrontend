@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import {
   RiHome3Line,
-  RiWalletLine,
   RiMore2Fill,
   RiCloseFill,
 } from "react-icons/ri";
-import  {TbReportAnalytics} from 'react-icons/tb';
-import  {FaUserAlt} from 'react-icons/fa';
-import  {HiOutlineUserGroup} from 'react-icons/hi';
-import {sendGetLogOut} from "../../utils/commonFetch";
+import { FaUserAlt } from 'react-icons/fa';
+import { BsFillFileEarmarkBarGraphFill } from 'react-icons/bs';
+import { AiOutlineUsergroupAdd } from 'react-icons/ai';
+import { sendGetLogOut } from "../../utils/commonFetch";
 import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = () => {
@@ -16,14 +15,13 @@ const Sidebar = () => {
   return (
     <>
       <div
-        className={`bg-[#FA6C17] h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
-          showMenu ? "left-0" : "-left-full"
-        }`}
+        className={`bg-[#FA6C17] h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${showMenu ? "left-0" : "-left-full"
+          }`}
       >
         {/* Profile */}
         <div className="flex flex-col items-center justify-center p-8 gap-2 h-[30vh]">
           <img
-              src={require('../../assets/img/logo.png')}
+            src={require('../../assets/img/logo.png')}
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
           />
           <h1 className="text-xl text-white font-bold">Lapsys</h1>
@@ -34,22 +32,38 @@ const Sidebar = () => {
             <button
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
             >
-             <NavLink to={`/dashboard`}>
-              <RiHome3Line /> Home
-             </NavLink>
+              <NavLink to={`/dashboard`}>
+                <RiHome3Line /> Home
+              </NavLink>
             </button>
 
             <button
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
             >
               <NavLink to={`/dashboard/users`}>
-              <FaUserAlt /> Users
-            </NavLink>
+                <AiOutlineUsergroupAdd /> Users
+              </NavLink>
+            </button>
+
+            <button
+              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+            >
+              <NavLink to={`/dashboard/employees`}>
+                <FaUserAlt /> Employee
+              </NavLink>
+            </button>
+
+            <button
+              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+            >
+              <NavLink to={`/dashboard/users`}>
+                <BsFillFileEarmarkBarGraphFill /> Graph
+              </NavLink>
             </button>
 
           </nav>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl">
-            <button onClick={ sendGetLogOut }>Log Out</button>
+            <button onClick={sendGetLogOut}>Log Out</button>
           </div>
         </div>
       </div>

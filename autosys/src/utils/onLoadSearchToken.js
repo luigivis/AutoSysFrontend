@@ -1,32 +1,30 @@
-import  {sendGetLoginByToken} from "./commonFetch";
-import {getPathLoginByToken} from "./endpointCatalog";
+import { sendGetLoginByToken } from "./commonFetch";
+import { getPathLoginByToken } from "./endpointCatalog";
 
 const searchToken = async () => {
-
-   console.log(window.location.pathname)
 
    const sessionStorageValue = window.sessionStorage.getItem('sessionAuth');
    const localStorageValue = window.localStorage.getItem("localAuth");
 
-   if(localStorageValue !== null || sessionStorageValue !==null ){
-      let result = await sendGetLoginByToken(getPathLoginByToken(),localStorageValue || sessionStorageValue);
+   if (localStorageValue !== null || sessionStorageValue !== null) {
+      let result = await sendGetLoginByToken(getPathLoginByToken(), localStorageValue || sessionStorageValue);
 
       result = JSON.parse(result);
       let statusCode = result.status.code;
 
-      if(statusCode !== 200){
+      if (statusCode !== 200) {
          window.location.href = '/';
       }
 
-      if (window.location.pathname !== "/"){
+      if (window.location.pathname !== "/") {
          return;
       }
       window.location.href = '/dashboard';
       return;
    }
 
-   if (localStorageValue === null && sessionStorageValue === null){
-      if (window.location.pathname === "/"){
+   if (localStorageValue === null && sessionStorageValue === null) {
+      if (window.location.pathname === "/") {
          return;
       }
       window.location.href = '/';
@@ -34,4 +32,4 @@ const searchToken = async () => {
    }
 
 }
-export  {searchToken};
+export { searchToken };

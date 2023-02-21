@@ -1,23 +1,24 @@
 import { sendGet } from '../../utils/commonFetch'
-import { useState, useEffect } from 'react'
 import { getServerPath } from '../../utils/endpointCatalog'
+import { useState, useEffect } from 'react'
 
-import Modal from '../../componets/User/userCreate'
 import useSession from '../../hooks/useSession'
-// import { Paginacion } from '../../componets/Pagination/Pagination'
+import Modal from '../../componets/Employee/EmployeeCreate'
 
-export default function DashboardUser() {
-    const [users, setUsers] = useState([])
+
+export default function DashboardEmployee() {
+    const [employee, setEmployee] = useState([])
     const { authToken } = useSession()
 
     useEffect(() => {
-        const fetchUsers = async () => {
-            const response = await sendGet(getServerPath('users/?size=100'), authToken);
-            setUsers(response?.body?.value)
+        const fecthEmployee = async () => {
+            const response = await sendGet(getServerPath('employees/list/?size=100'), authToken);
+            setEmployee(response?.body?.value)
         }
 
-        fetchUsers()
+        fecthEmployee()
     }, [authToken])
+
 
 
     return (
@@ -29,22 +30,22 @@ export default function DashboardUser() {
                             <thead className="bg-white border-b">
                                 <tr>
                                     <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                        #
-                                    </th>
-                                    <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                        Username
+
                                     </th>
                                     <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                                         Name
                                     </th>
                                     <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                        LastName
+                                    </th>
+                                    <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                                         Ident Card
                                     </th>
                                     <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                        Created At
+                                        Phone
                                     </th>
                                     <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                        Updated At
+                                        Email
                                     </th>
                                     <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                                         Status
@@ -55,33 +56,31 @@ export default function DashboardUser() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users &&
-                                    users.map((user, i) => {
+                                {employee &&
+                                    employee.map((employee, i) => {
                                         return <tr key={i} className="bg-gray-100 border-b">
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.usId}</td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{user.usUsername}</td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{user.usEmployeeUuid.empName + ' ' + user.usEmployeeUuid.empLastname}</td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{user.usEmployeeUuid.empIdentCard}</td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{user.usEmployeeUuid.empCreatedAt}</td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{user.usEmployeeUuid.empUpdatedAt}</td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{user.usStatus === 1 ? "on" : "off"}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{employee.usEmployeeUuid}</td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{employee.empName}</td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{employee.empLastname}</td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{employee.empIdentCard}</td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{employee.empPhone}</td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{employee.empEmail}</td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{employee.empStatus === 1 ? "on" : "off"}</td>
                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" >
                                                 <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline" >Edit</a>
                                                 <span className="mx-2">|</span>
 
-                                                <a href="#" className="font-medium text-red-600 dark:text-red-500 hover:underline" >{user.usStatus === 1 ? "Delete" : "Recovery"}</a>
+                                                <a href="#" className="font-medium text-red-600 dark:text-red-500 hover:underline" >{employee.empStatus === 1 ? "Delete" : "Recovery"}</a>
                                             </td>
                                         </tr>
                                     })}
                             </tbody>
-
+                            <Modal />
                         </table>
-                        <Modal />
-                        {/* <Paginacion /> */}
                     </div>
                 </div>
             </div >
         </div >
     )
 }
-export { DashboardUser }
+export { DashboardEmployee }
