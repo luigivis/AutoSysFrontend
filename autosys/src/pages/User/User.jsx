@@ -12,7 +12,7 @@ export default function DashboardUser() {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await sendGet(getServerPath('users/?size=100'), authToken);
+            const response = await sendGet(getServerPath('users/list/?size=100'), authToken);
             setUsers(response?.body?.value)
         }
 
