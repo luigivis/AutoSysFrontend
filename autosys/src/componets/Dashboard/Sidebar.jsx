@@ -8,7 +8,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { BsFillFileEarmarkBarGraphFill } from 'react-icons/bs';
 import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { sendGetLogOut } from "../../utils/commonFetch";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const [showMenu, setShowMenu] = useState(false);

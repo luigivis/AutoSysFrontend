@@ -7,8 +7,6 @@ import useSession from '../../hooks/useSession'
 
 export default function Modal() {
     const [showModal, setShowModal] = React.useState(false);
-    const [isShown, setIsSHown] = useState(false);
-
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
     const [ident_card, setIdentCard] = useState('');

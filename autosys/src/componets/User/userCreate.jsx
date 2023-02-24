@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { sendPost } from '../../utils/commonFetch'
 import { getPathUserPost } from '../../utils/endpointCatalog'
 import useSession from '../../hooks/useSession'
@@ -7,7 +7,7 @@ import useSession from '../../hooks/useSession'
 
 export default function Modal() {
     const [showModal, setShowModal] = React.useState(false);
-    const [isShown, setIsSHown] = useState(false);
+    const [isShown] = useState(false);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -41,11 +41,10 @@ export default function Modal() {
     return (
         <>
             <button
-                className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
+                className="fixed z-90 bottom-10 right-18 bg-blue-600 w-10 h-10 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:bg-blue-700 hover:drop-shadow-2xl hover:animate-bounce duration-300" type="button"
                 onClick={() => setShowModal(true)}
             >
-                Create
+                +
             </button>
             {showModal ? (
                 <>

@@ -3,8 +3,8 @@ import { getPathLoginByToken } from "./endpointCatalog";
 
 const searchToken = async () => {
 
-   const sessionStorageValue = window.sessionStorage.getItem('sessionAuth');
-   const localStorageValue = window.localStorage.getItem("localAuth");
+   const sessionStorageValue = window.sessionStorage.getItem('authToken');
+   const localStorageValue = window.localStorage.getItem("authToken");
 
    if (localStorageValue !== null || sessionStorageValue !== null) {
       let result = await sendGetLoginByToken(getPathLoginByToken(), localStorageValue || sessionStorageValue);

@@ -12,7 +12,7 @@ export default function DashboardEmployee() {
 
     useEffect(() => {
         const fecthEmployee = async () => {
-            const response = await sendGet(getServerPath('employees/list/?size=100'), authToken);
+            const response = await sendGet(getServerPath('employees/list/?page=0&size=10'), authToken);
             setEmployee(response?.body?.value)
         }
 
