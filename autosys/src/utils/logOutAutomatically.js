@@ -1,9 +1,9 @@
-const timeoutInMS = 15*60*1000; // 3 minutes -> 3 * 60 * 1000
+const timeoutInMS = 15 * 60 * 1000; // 3 minutes -> 3 * 60 * 1000
 let timeoutId;
 
-const handleInactive=() =>{
-    localStorage.removeItem("localAuth");
-    sessionStorage.removeItem("sessionAuth");
+const handleInactive = () => {
+    localStorage.removeItem("authToken");
+    sessionStorage.removeItem("authToken");
 }
 
 const startTimer = () => {
@@ -23,4 +23,4 @@ const setupTimers = async () => {
     startTimer();
 }
 
-export {setupTimers};
+export { setupTimers };

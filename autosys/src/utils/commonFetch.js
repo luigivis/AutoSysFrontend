@@ -181,15 +181,15 @@ const getJsonError = async (error) => {
  */
 const sendGetLogOut = async () => {
 
-    const sessionStorageValue = window.sessionStorage.getItem('sessionAuth');
-    const localStorageValue = window.localStorage.getItem("localAuth");
+    const sessionStorageValue = window.sessionStorage.getItem('authToken');
+    const localStorageValue = window.localStorage.getItem("authToken");
 
     if (sessionStorageValue !== null) {
-        window.sessionStorage.removeItem('sessionAuth');
+        window.sessionStorage.removeItem('authToken');
     }
 
     if (localStorageValue !== null) {
-        window.sessionStorage.removeItem('localAuth');
+        window.sessionStorage.removeItem('authToken');
     }
 
     const config = {
@@ -210,8 +210,8 @@ const sendGetLogOut = async () => {
     catch (error) {
 
         if (error.response.data.status.code === 401) {
-            window.sessionStorage.removeItem("sessionAuth");
-            window.localStorage.removeItem("localAuth");
+            window.sessionStorage.removeItem("authToken");
+            window.localStorage.removeItem("authToken");
         }
 
         getJsonError(error);

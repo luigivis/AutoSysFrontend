@@ -17,10 +17,6 @@ const getPathUser = () => {
 const getPathUserPost = () => {
   return process.env.REACT_APP_IP_ADDRESS + "users/create";
 }
-
-const getPathEmployeePost = () => {
-  return process.env.REACT_APP_IP_ADDRESS + "employees/create";
-}
 const getPathEmployee = () => {
   return "http://" + process.env.REACT_APP_IP_ADDRESS + "/api/v1/employees/list/";
 }
