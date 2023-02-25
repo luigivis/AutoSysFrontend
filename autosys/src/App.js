@@ -15,7 +15,9 @@ const wrapper = async () => {
 }
 
 function App() {
+    console.log(window.location.pathname);
     return (
+
         <div onLoad={wrapper}>
             <Toaster />
             <div>

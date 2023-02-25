@@ -1,7 +1,7 @@
 import React from "react";
-import { useState } from "react";
-import { sendPost } from '../../utils/commonFetch'
-import { getPathUserPost } from '../../utils/endpointCatalog'
+import { useState, useEffect } from "react";
+import { sendPost, sendGet } from '../../utils/commonFetch'
+import { getServerPath } from '../../utils/endpointCatalog'
 import useSession from '../../hooks/useSession'
 
 
@@ -13,6 +13,11 @@ export default function Modal() {
     const [password, setPassword] = useState('');
     const [roleId, setRoleId] = useState('');
     const [employeeUuid, setEmployeeUuid] = useState('');
+    const [employees, setEmployees] = useState([]);
+    const [selectedOptionId, setSelectedOptionId] = useState('');
+
+
+
 
     const { authToken } = useSession();
 
@@ -30,14 +35,21 @@ export default function Modal() {
         console.log(data);
         try {
 
-            const response = await sendPost(getPathUserPost(), data, authToken);
+            const response = await sendPost(getServerPath('users/create'), data, authToken);
             console.log(response.body.value);
         } catch (error) {
             console.log(error);
         }
 
     }
+    useEffect(() => {
+        const fetchUsers = async () => {
+            const response = await sendGet(getServerPath('employees/list/?size=500'), authToken);
+            setEmployees(response?.body?.value)
+        }
 
+        fetchUsers()
+    }, [authToken])
     return (
         <>
             <button
@@ -74,7 +86,7 @@ export default function Modal() {
                                         <span class="text-gray-700">username</span>
                                         <input
                                             onChange={(e) => setUsername(e.target.value)}
-                                            class="form-input mt-1 block w-full" placeholder="Jane ">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jane ">
                                         </input>
                                     </label>
                                     <label class="block my-8">
@@ -84,29 +96,32 @@ export default function Modal() {
                                             className="input" class="text-gray-700">password</span>
                                         <input
                                             onChange={(e) => setPassword(e.target.value)}
-                                            class="form-input mt-1 block w-full" placeholder="******"></input>
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="******"></input>
                                     </label>
 
                                     <label class="block">
                                         <span class="text-gray-700">Role</span>
                                         <input
                                             onChange={(e) => setRoleId(e.target.value)}
-                                            class="form-input mt-1 block w-full"></input>
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
                                     </label>
-
-                                    <label class="block">
-                                        <span class="text-gray-700">EmployeeUuid</span>
-
-                                        <select required
-                                            onChange={(e) => setEmployeeUuid(e.target.value)}
-                                            class="form-select mt-1 block w-full">
-                                            <option>Select Value</option>
-                                            <option value={"00005a4d-a68c-11ed-96e8-2a054474ca57"}>sdsd</option>
-                                            <option value={"2d184710-950e-11ed-bea4-0242ac110002"}>sdsd23e2</option>
-                                        </select>
-                                    </label>
+                                    <br></br>
+                                    <div>
+                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            <span class="text-gray-700">EmployeeUuid</span>
 
 
+                                            <select value={selectedOptionId} onChange={event => setEmployeeUuid(event.target.value)}
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+
+                                                {employees.map(employee => (
+                                                    <option key={employee.empUuid} value={employee.empUuid}>{employee.empName + ' ' + employee.empLastname}</option>
+                                                ))}
+                                            </select>
+                                        </label>
+                                        <br></br>
+                                    </div>
                                 </div>
                                 {/*footer*/}
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">

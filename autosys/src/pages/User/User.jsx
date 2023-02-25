@@ -22,6 +22,7 @@ export default function DashboardUser() {
         fetchUsers()
     }, [authToken])
 
+
     const role = (usRoleId) => {
         if (usRoleId === 1) {
             return 'ADMIN'

@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 
 import useSession from '../../hooks/useSession'
 import Modal from '../../componets/Employee/EmployeeCreate'
+import ModalEditEmployee from '../../componets/Employee/EmployeeEdit'
+import ChangeStatus from '../../componets/Employee/EmployeeEnable'
 
 
 export default function DashboardEmployee() {
@@ -12,15 +14,29 @@ export default function DashboardEmployee() {
 
     useEffect(() => {
         const fecthEmployee = async () => {
-            const response = await sendGet(getServerPath('employees/list/?page=0&size=10'), authToken);
+            const response = await sendGet(getServerPath('employees/list/?page=1&size=10'), authToken);
             setEmployee(response?.body?.value)
         }
 
         fecthEmployee()
     }, [authToken])
 
+    const status = (usStatus) => {
+        if (usStatus === 1) {
+            return (<div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                <h2 class="text-sm font-normal">Enable</h2>
+            </div>
+            )
+        }
+        if (usStatus === 0) {
+            return (
+                <div class="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
+                    <h2 class="text-sm font-normal">Disable</h2>
+                </div>
+            )
+        }
 
-
+    }
     return (
         <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -65,12 +81,11 @@ export default function DashboardEmployee() {
                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{employee.empIdentCard}</td>
                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{employee.empPhone}</td>
                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{employee.empEmail}</td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{employee.empStatus === 1 ? "on" : "off"}</td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{status(employee.empStatus)}</td>
                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" >
-                                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline" >Edit</a>
+                                                <ModalEditEmployee empUuid={employee.empUuid} />
                                                 <span className="mx-2">|</span>
-
-                                                <a href="#" className="font-medium text-red-600 dark:text-red-500 hover:underline" >{employee.empStatus === 1 ? "Delete" : "Recovery"}</a>
+                                                <ChangeStatus empUuid={employee.empUuid} usStatus={employee.empStatus} />
                                             </td>
                                         </tr>
                                     })}

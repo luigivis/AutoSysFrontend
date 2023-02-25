@@ -40,12 +40,12 @@ export default function Modal() {
 
     return (
         <>
+            {/* lg:hidden fixed left-4 bottom-4 text-2xl bg-[#3F485B] p-2.5 rounded-full text-white z-50 */}
             <button
-                className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
+                className="fixed z-90 bottom-4 right-18 bg-blue-600 w-10 h-10 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:bg-blue-700 hover:drop-shadow-2xl hover:animate-bounce duration-300" type="button"
                 onClick={() => setShowModal(true)}
             >
-                Create
+                +
             </button>
             {showModal ? (
                 <>
@@ -58,7 +58,7 @@ export default function Modal() {
                                 {/*header*/}
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                                     <h3 className="text-3xl font-semibold">
-                                        Employee User
+                                        Employee
                                     </h3>
                                     <button
                                         className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -75,7 +75,7 @@ export default function Modal() {
                                         <span class="text-gray-700">username</span>
                                         <input
                                             onChange={(e) => setName(e.target.value)}
-                                            class="form-input mt-1 block w-full" placeholder="Jane ">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jane ">
                                         </input>
                                     </label>
                                     <label class="block my-8">
@@ -84,31 +84,31 @@ export default function Modal() {
                                             className="input" class="text-gray-700">lastname</span>
                                         <input
                                             onChange={(e) => setLastname(e.target.value)}
-                                            class="form-input mt-1 block w-full"></input>
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
                                     </label>
 
                                     <label class="block">
                                         <span class="text-gray-700">identCard</span>
                                         <input
                                             onChange={(e) => setIdentCard(e.target.value)}
-                                            class="form-input mt-1 block w-full"></input>
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
                                     </label>
-
+                                    <br></br>
                                     <label class="block">
                                         <span class="text-gray-700">Phone</span>
                                         <input onChange={(e) => setPhone(e.target.value)}
-                                            class="form-input mt-1 block w-full">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                         </input>
                                     </label>
-
+                                    <br></br>
                                     <label class="block">
                                         <span class="text-gray-700">Emaill</span>
                                         <input onChange={(e) => setEmail(e.target.value)}
-                                            class="form-input mt-1 block w-full">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         </input>
                                     </label>
-
+                                    <br></br>
 
                                 </div>
                                 {/*footer*/}

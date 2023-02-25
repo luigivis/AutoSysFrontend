@@ -8,14 +8,13 @@ export default function ChangeStatus(props) {
     const { authToken } = useSession();
 
     const handleSubmit = async (event) => {
-        console.log("jhasasa")
         event.preventDefault();
         try {
             if (props.usStatus === 1) {
-                await sendGet(getServerPath('users/disable/' + props.usId), authToken);
+                await sendGet(getServerPath('employees/changeStatus/' + props.empUuid), authToken);
             }
             if (props.usStatus === 0) {
-                await sendGet(getServerPath('users/enable/' + props.usId), authToken);
+                await sendGet(getServerPath('employees/changeStatus/' + props.empUuid), authToken);
             }
             window.location.reload(true);
 
@@ -25,12 +24,14 @@ export default function ChangeStatus(props) {
         }
 
     }
+
+
     return (
         <>
 
             <button
 
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                className="font-medium text-red-600 dark:text-blue-500 hover:underline"
                 type="button"
                 onClick={(handleSubmit)}
             >
