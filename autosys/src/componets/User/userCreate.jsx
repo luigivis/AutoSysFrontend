@@ -14,7 +14,7 @@ export default function Modal() {
     const [roleId, setRoleId] = useState('');
     const [employeeUuid, setEmployeeUuid] = useState('');
     const [employees, setEmployees] = useState([]);
-    const [selectedOptionId, setSelectedOptionId] = useState('');
+    const [selectedOptionId] = useState('');
 
 
 

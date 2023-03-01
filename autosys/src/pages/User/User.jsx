@@ -6,11 +6,12 @@ import Modal from '../../componets/User/userCreate'
 import useSession from '../../hooks/useSession'
 import ModalEdit from '../../componets/User/userEdit'
 import ChangeStatus from '../../componets/User/userDelete'
-// import { Paginacion } from '../../componets/Pagination/Pagination'
-
+import Pagination from '../../componets/Pagination/usePagination'
 export default function DashboardUser() {
     const [users, setUsers] = useState([])
     const { authToken } = useSession()
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(10);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -49,6 +50,11 @@ export default function DashboardUser() {
             )
         }
     }
+
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = users.slice(indexOfFirstRecord, indexOfLastRecord);
+    const nPages = Math.ceil(users.length / recordsPerPage)
 
     return (
         <div className="flex flex-col">
@@ -108,10 +114,20 @@ export default function DashboardUser() {
                                             </td>
                                         </tr>
                                     })}
+
                             </tbody>
 
                         </table>
-                        <Modal />
+                        <div className='container mt-5'>
+
+                            <users data={currentRecords} />
+                            <Pagination
+                                nPages={nPages}
+                                currentPage={currentPage}
+                                setCurrentPage={setCurrentPage}
+                            />
+                        </div>
+                        <Modal />/
                         {/* <Paginacion /> */}
                     </div>
                 </div>
