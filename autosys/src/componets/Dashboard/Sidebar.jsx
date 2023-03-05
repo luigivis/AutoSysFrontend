@@ -4,11 +4,11 @@ import {
   RiMore2Fill,
   RiCloseFill,
 } from "react-icons/ri";
-import { FaUserAlt } from 'react-icons/fa';
 import { BsFillFileEarmarkBarGraphFill } from 'react-icons/bs';
-import { AiOutlineUsergroupAdd } from 'react-icons/ai';
+import { FaUserCircle, FaUsers, FaUserAlt } from 'react-icons/fa';
+import { HiHome } from 'react-icons/hi';
 import { sendGetLogOut } from "../../utils/commonFetch";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -29,35 +29,42 @@ const Sidebar = () => {
         {/* Nav */}
         <div className="bg-[#3F485B] p-8 rounded-tr-[100px] h-[70vh] overflow-y-scroll no-scrollbar flex flex-col justify-between gap-8">
           <nav className="flex flex-col gap-8">
-            <button
+            <NavLink to={`/dashboard`}>
+              <button
+                className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+              >
+                <HiHome /> Home
+              </button>
+            </NavLink>
+            <NavLink to={`/dashboard/users?page=0`}> <button
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
             >
-              <NavLink to={`/dashboard`}>
-                <RiHome3Line /> Home
-              </NavLink>
+              <FaUsers /> Users
             </button>
+            </NavLink>
+
+            <NavLink to={`/dashboard/employees?page=0`}> <button
+
+              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+            >
+              <FaUserAlt /> Employee
+
+            </button>
+            </NavLink>
+
+            <NavLink to={`/dashboard/clients`}>
+              <button
+                className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+              >
+                <FaUserCircle /> Clients
+              </button>
+            </NavLink>
 
             <button
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
             >
+              <BsFillFileEarmarkBarGraphFill /> Graph
               <NavLink to={`/dashboard/users`}>
-                <AiOutlineUsergroupAdd /> Users
-              </NavLink>
-            </button>
-
-            <button
-              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
-            >
-              <NavLink to={`/dashboard/employees`}>
-                <FaUserAlt /> Employee
-              </NavLink>
-            </button>
-
-            <button
-              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
-            >
-              <NavLink to={`/dashboard/users`}>
-                <BsFillFileEarmarkBarGraphFill /> Graph
               </NavLink>
             </button>
 

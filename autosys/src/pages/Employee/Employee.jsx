@@ -1,25 +1,32 @@
 import { sendGet } from '../../utils/commonFetch'
 import { getServerPath } from '../../utils/endpointCatalog'
 import { useState, useEffect } from 'react'
+import { useSearchParams } from "react-router-dom";
 
 import useSession from '../../hooks/useSession'
 import Modal from '../../componets/Employee/EmployeeCreate'
 import ModalEditEmployee from '../../componets/Employee/EmployeeEdit'
 import ChangeStatus from '../../componets/Employee/EmployeeEnable'
+import Pagination from '../../componets/Pagination/usePagination'
 
-
-export default function DashboardEmployee() {
+const DashboardEmployee = () => {
     const [employee, setEmployee] = useState([])
+
+    const [body, setBody] = useState([])
     const { authToken } = useSession()
+
+    const [searchParams] = useSearchParams();
 
     useEffect(() => {
         const fecthEmployee = async () => {
-            const response = await sendGet(getServerPath('employees/list/?page=1&size=10'), authToken);
+            const number = searchParams.get("page") === undefined ? 0 : searchParams.get("page")
+            const response = await sendGet(getServerPath('employees/list/?page=' + number + '&size=10'), authToken);
             setEmployee(response?.body?.value)
+            setBody(response?.body)
         }
 
         fecthEmployee()
-    }, [authToken])
+    }, [authToken, searchParams])
 
     const status = (usStatus) => {
         if (usStatus === 1) {
@@ -92,6 +99,15 @@ export default function DashboardEmployee() {
                             </tbody>
                             <Modal />
                         </table>
+                        <div className='container  mt-5'>
+
+
+                            <Pagination
+                                nPages={body?.totalPages}
+                                currentPage={body?.currentPage}
+                                totalItems={body?.totalItems}
+                            />
+                        </div>
                     </div>
                 </div>
             </div >

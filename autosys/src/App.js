@@ -8,14 +8,13 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import DashboardUser from './pages/User/User';
 
 import ProtectedRoute from './componets/ProtectedRoute/ProtectedRoute'
-import DashboardEmployee from './pages/Employee/Employee'
+import { DashboardEmployee } from './pages/Employee/Employee'
 
 const wrapper = async () => {
     await setupTimers()
 }
 
 function App() {
-    console.log(window.location.pathname);
     return (
 
         <div onLoad={wrapper}>

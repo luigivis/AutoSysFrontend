@@ -27,6 +27,8 @@ export default function Login() {
         }
 
         const { jwt } = headers;
+        // const { user } = data.name;
+        // console.log(user)
 
         // Si se seleccionó el remember me, entonces guardar en localStorage
         const rememberMe = formData.get("rememberMe")

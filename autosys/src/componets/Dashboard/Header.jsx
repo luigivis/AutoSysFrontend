@@ -1,12 +1,12 @@
 import React from "react";
-// Icons
+import useSession from "../../hooks/useSession";
 import { RiSearch2Line } from "react-icons/ri";
-
 const Header = () => {
+  const { user } = useSession();
   return (
     <header className="flex flex-col md:flex-row items-center justify-between gap-4">
       <h1 className="text-2xl md:text-3xl font-bold">
-        🌞 Good morning, <span className="text-primary-100">Jorge</span>
+        🌞 Good morning, <span className="text-primary-100">{user}</span>
       </h1>
       <form className="w-full md:w-auto">
         <div className="relative">
