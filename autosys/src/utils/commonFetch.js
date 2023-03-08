@@ -24,7 +24,7 @@ const sendPost = async (endpoint, jsonBody, token) => {
     try {
         const res = await axios.post(endpoint, jsonBody, config)
 
-        await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
+        // await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
         window.sessionStorage.setItem("sessionAuth", res.headers.get("JWT"));
         return JSON.stringify(res.data);
     } catch (error) {
@@ -84,7 +84,7 @@ const sendGet = async (endpoint, token) => {
     try {
         const res = await axios.get(endpoint, config)
 
-        await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
+        // await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
         return res.data;
     }
     catch (error) {

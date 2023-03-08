@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { NavLink, Link } from "react-router-dom";
+
 
 const Pagination = ({ nPages: totalPages, currentPage, totalItems }) => {
     const pageNumbers = []
@@ -33,18 +35,26 @@ const Pagination = ({ nPages: totalPages, currentPage, totalItems }) => {
     const nextPage = () => {
         if (currentPage < totalPages) {
 
-            window.location.href = window.location.pathname + '?page=' + (currentPage + 1);
+
+            return (
+                <Link
+                    href={window.location.pathname + '?page=' + (currentPage + 1)}
+                 
+                >
+                </Link>
+            )
         }
     }
     const prevPage = () => {
         if (currentPage >= totalPages) {
-            window.location.href = window.location.pathname + '?page=' + (currentPage - 1);
+            window.location.reload(window.location.pathname + '?page=' + (currentPage - 1));
 
         }
     }
 
     const setCurrentPage = (number) => {
-        window.location.href = window.location.pathname + '?page=' + (number - 1);
+       
+        window.location.reload(window.location.pathname + '?page=' + (number - 1));
     }
 
     const setFirstPage = () => {

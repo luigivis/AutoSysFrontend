@@ -9,6 +9,7 @@ import DashboardUser from './pages/User/User';
 
 import ProtectedRoute from './componets/ProtectedRoute/ProtectedRoute'
 import { DashboardEmployee } from './pages/Employee/Employee'
+// import {DashboardCliente}
 
 const wrapper = async () => {
     await setupTimers()
@@ -41,6 +42,11 @@ function App() {
                                     <DashboardEmployee />
                                 </ProtectedRoute>
                             } />
+                             {/* <Route path="clients" element={
+                                <ProtectedRoute>
+                                    <DashboardCliente />
+                                </ProtectedRoute>
+                            } /> */}
                         </Route>
                     </Routes>
                 </Router>
