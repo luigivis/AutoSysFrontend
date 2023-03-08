@@ -1,9 +1,9 @@
 #!/bin/bash
 
 NODE=$(node -v)
-if [ "$NODE" != "v18.14.0" ]; then
+if [ "$NODE" != "v18.13.0" ]; then
   echo "NODE VERSION DISTINCT v18.14.0" >&2
-  echo "RUN nvm install --v18.14.0"
+  echo "RUN nvm install --v18.13.0"
   exit 2;
 fi
 
