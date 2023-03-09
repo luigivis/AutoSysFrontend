@@ -16,11 +16,7 @@ export default function Modal() {
     const [employees, setEmployees] = useState([]);
     const [selectedOptionId] = useState('');
 
-
-
-
     const { authToken } = useSession();
-
 
     const data = {
         username: username,
@@ -82,27 +78,26 @@ export default function Modal() {
                                 </div>
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
-                                    <label class="block">
-                                        <span class="text-gray-700">username</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">username</span>
                                         <input
                                             onChange={(e) => setUsername(e.target.value)}
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jane ">
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jane ">
                                         </input>
                                     </label>
-                                    <label class="block my-8">
+                                    <label className="block my-8">
                                         <span
                                             type={isShown ? "text" : "password"}
-                                            placeholder="Password"
-                                            className="input" class="text-gray-700">password</span>
+                                            placeholder="Password"className="input text-gray-700">password</span>
                                         <input
                                             onChange={(e) => setPassword(e.target.value)}
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="******"></input>
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="******"></input>
                                     </label>
 
-                                    <label class="block">
-                                        <span class="text-gray-700">Role</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">Role</span>
                                         <select value={roleId} onChange={(e) => setRoleId(e.target.value)}
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <option value="1">Admin</option>
                                             <option value="2">Supervisor</option>
                                             <option value="3">Cashier</option>
@@ -111,12 +106,12 @@ export default function Modal() {
                                     </label>
                                     <br></br>
                                     <div>
-                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                            <span class="text-gray-700">EmployeeUuid</span>
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            <span className="text-gray-700">EmployeeUuid</span>
 
 
                                             <select value={selectedOptionId} onChange={event => setEmployeeUuid(event.target.value)}
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
 
                                                 {employees.map(employee => (

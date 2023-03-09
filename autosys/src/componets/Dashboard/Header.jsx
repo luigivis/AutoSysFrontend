@@ -1,12 +1,10 @@
 import React from "react";
-import useSession from "../../hooks/useSession";
 import { RiSearch2Line } from "react-icons/ri";
 const Header = () => {
-  const { user } = useSession();
   return (
     <header className="flex flex-col md:flex-row items-center justify-between gap-4">
       <h1 className="text-2xl md:text-3xl font-bold">
-        🌞 Good morning, <span className="text-primary-100">{user}</span>
+        🌞 {window.localStorage.getItem("welcomeMessage")}
       </h1>
       <form className="w-full md:w-auto">
         <div className="relative">

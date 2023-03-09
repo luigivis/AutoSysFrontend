@@ -54,15 +54,15 @@ export default function DashboardUser() {
 
     const status = (usStatus) => {
         if (usStatus === 1) {
-            return (<div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
-                <h2 class="text-sm font-normal">Enable</h2>
+            return (<div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                <h2 className="text-sm font-normal">Enable</h2>
             </div>
             )
         }
         if (usStatus === 0) {
             return (
-                <div class="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
-                    <h2 class="text-sm font-normal">Disable</h2>
+                <div className="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
+                    <h2 className="text-sm font-normal">Disable</h2>
                 </div>
             )
         }

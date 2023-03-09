@@ -56,7 +56,7 @@ const login = async (endpoint, body) => {
 
         await Alerts(factoryCodeMessage(response.data.status.code), response.data.status.description);
 
-
+        window.localStorage.setItem("welcomeMessage", response.data.status.description);
         return response;
     } catch (error) {
         getJsonError(error);

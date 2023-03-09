@@ -71,41 +71,39 @@ export default function Modal() {
                                 </div>
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
-                                    <label class="block">
-                                        <span class="text-gray-700">username</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">username</span>
                                         <input
                                             onChange={(e) => setName(e.target.value)}
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jane ">
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jane ">
                                         </input>
                                     </label>
-                                    <label class="block my-8">
-                                        <span
-
-                                            className="input" class="text-gray-700">lastname</span>
+                                    <label className="block my-8">
+                                        <span className="text-gray-700">lastname</span>
                                         <input
                                             onChange={(e) => setLastname(e.target.value)}
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
                                     </label>
 
-                                    <label class="block">
-                                        <span class="text-gray-700">identCard</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">identCard</span>
                                         <input
                                             onChange={(e) => setIdentCard(e.target.value)}
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
                                     </label>
                                     <br></br>
-                                    <label class="block">
-                                        <span class="text-gray-700">Phone</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">Phone</span>
                                         <input onChange={(e) => setPhone(e.target.value)}
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                         </input>
                                     </label>
                                     <br></br>
-                                    <label class="block">
-                                        <span class="text-gray-700">Emaill</span>
+                                    <label className="block">
+                                        <span className="text-gray-700">Emaill</span>
                                         <input onChange={(e) => setEmail(e.target.value)}
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         </input>
                                     </label>
                                     <br></br>

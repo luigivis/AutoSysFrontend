@@ -9,7 +9,7 @@ import ModalEditEmployee from '../../componets/Employee/EmployeeEdit'
 import ChangeStatus from '../../componets/Employee/EmployeeEnable'
 import Pagination from '../../componets/Pagination/usePagination'
 
-const DashboardEmployee = ({numberParam}) => {
+const DashboardEmployee = () => {
     const [employee, setEmployee] = useState([])
     const [body, setBody] = useState([])
     const { authToken } = useSession()
@@ -21,10 +21,6 @@ const DashboardEmployee = ({numberParam}) => {
 
             if (number == null){
                 number = 0;
-            }
-            if (numberParam != null){
-                number = numberParam;
-                console.log(numberParam)
             }
 
             const [response] = await Promise.all([sendGet(getServerPath('employees/list/?page=' + number + '&size=10'), authToken)]);
