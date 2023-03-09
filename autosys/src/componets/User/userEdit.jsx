@@ -18,15 +18,20 @@ export default function ModalEdit(props) {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
+       
         console.log(data);
         try {
             const response = await sendPut(getServerPath('users/change/role/' + props.usId + '/' + data.roleId), data, authToken);
+            window.location.reload();
             console.log(response.body.value);
+      
         } catch (error) {
             console.log(error);
         }
 
     }
+
+
 
     return (
         <>

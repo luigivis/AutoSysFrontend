@@ -1,31 +1,35 @@
 const getPathLoginByForm = () => {
-    return process.env.REACT_APP_IP_ADDRESS + 'security/auth'
+  return 'http://' + process.env.REACT_APP_IP_ADDRESS + '/api/v1/security/auth'
 }
 const getPathLoginByToken = () => {
-    return process.env.REACT_APP_IP_ADDRESS + 'security/tokenValid'
+  return (
+    'http://' + process.env.REACT_APP_IP_ADDRESS + '/api/v1/security/tokenValid'
+  )
 }
 const getPathLogOut = () => {
-    return process.env.REACT_APP_IP_ADDRESS + 'security/logout'
+  return (
+    'http://' + process.env.REACT_APP_IP_ADDRESS + '/api/v1/security/logout'
+  )
 }
 const getPathUser = () => {
-    return process.env.REACT_APP_IP_ADDRESS + 'users/?size=100'
+  return 'http://' + process.env.REACT_APP_IP_ADDRESS + '/api/v1/users/?size=100'
 }
 const getPathUserPost = () => {
-    return process.env.REACT_APP_IP_ADDRESS + "users/create";
+  return process.env.REACT_APP_IP_ADDRESS + "users/create";
 }
 const getPathEmployee = () => {
-    return process.env.REACT_APP_IP_ADDRESS + "employees/list/";
+  return "http://" + process.env.REACT_APP_IP_ADDRESS + "/api/v1/employees/list/";
 }
 
 const getServerPath = (resource) =>
-    `${process.env.REACT_APP_IP_ADDRESS}${resource}`
+  `${process.env.REACT_APP_IP_ADDRESS}${resource}`
 
 export {
-    getPathLoginByForm,
-    getPathLoginByToken,
-    getPathLogOut,
-    getPathUser,
-    getServerPath,
-    getPathUserPost,
-    getPathEmployee,
+  getPathLoginByForm,
+  getPathLoginByToken,
+  getPathLogOut,
+  getPathUser,
+  getServerPath,
+  getPathUserPost,
+  getPathEmployee,
 }

@@ -22,7 +22,7 @@ export default function DashboardUser() {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const number = searchParams.get("page") == null ? 0 : searchParams.get("page")
+            const number = searchParams.get("page") === undefined ? searchParams.get("page") : 0
             const response = await sendGet(getServerPath('users/list/?page=' + number + '&size=10'), authToken);
 
             setUsers(response?.body?.value)
@@ -54,15 +54,15 @@ export default function DashboardUser() {
 
     const status = (usStatus) => {
         if (usStatus === 1) {
-            return (<div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
-                <h2 className="text-sm font-normal">Enable</h2>
+            return (<div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                <h2 class="text-sm font-normal">Enable</h2>
             </div>
             )
         }
         if (usStatus === 0) {
             return (
-                <div className="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
-                    <h2 className="text-sm font-normal">Disable</h2>
+                <div class="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
+                    <h2 class="text-sm font-normal">Disable</h2>
                 </div>
             )
         }
@@ -144,7 +144,7 @@ export default function DashboardUser() {
                                     {console.log(body)}
 
                                     <Pagination
-                                        nPages={body?.totalPages}
+                                        nPages={body?.totalPages - 1}
                                         currentPage={body?.currentPage}
                                         totalItems={body?.totalItems}
                                     />
