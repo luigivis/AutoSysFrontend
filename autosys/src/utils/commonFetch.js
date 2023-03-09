@@ -7,7 +7,7 @@ import { getPathLogOut } from "../utils/endpointCatalog"
  * Make Post with Axios and Execute Alert
  *
  * @param {string} endpoint The url to make Post
- * @param {string} jsonBody The json data
+ * @param {{phone: string, name: string, email: string, lastname: string}} jsonBody The json data
  * @param {string} token The Token for the server
  *
  * @return {string} Return the JSON
@@ -24,7 +24,7 @@ const sendPost = async (endpoint, jsonBody, token) => {
     try {
         const res = await axios.post(endpoint, jsonBody, config)
 
-        // await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
+        await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
         window.sessionStorage.setItem("sessionAuth", res.headers.get("JWT"));
         return JSON.stringify(res.data);
     } catch (error) {
@@ -75,6 +75,7 @@ const login = async (endpoint, body) => {
  */
 const sendGet = async (endpoint, token) => {
 
+    console.log(endpoint)
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -84,7 +85,7 @@ const sendGet = async (endpoint, token) => {
     try {
         const res = await axios.get(endpoint, config)
 
-        // await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
+        //await Alerts(factoryCodeMessage(res.data.status.code), res.data.status.description);
         return res.data;
     }
     catch (error) {

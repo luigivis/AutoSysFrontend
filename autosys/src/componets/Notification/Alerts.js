@@ -22,7 +22,7 @@ const notify = async (status, description) =>
                 </div>
             </div>
         ),
-        {id: "unique-notification", position: "top-center"}
+        {id: "unique-notification", position: "top-center", duration: 2}
     );
 
 const Alert = async (status, description) => {

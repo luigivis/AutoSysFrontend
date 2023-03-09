@@ -14,24 +14,22 @@ export default function ModalEditEmployee(props) {
 
     const { authToken } = useSession();
 
-
     const data = {
         name: name,
         lastname: lastname,
         phone: phone,
         email: email,
-
     }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(data);
         try {
-            const response = await sendPost(getServerPath('employees/edit/' + props.empUuid), data, authToken);
+            const response = sendPost(getServerPath('employees/edit/' + props.empUuid), data, authToken);
             console.log(response.body.value);
         } catch (error) {
             console.log(error);
         }
-
     }
 
     return (

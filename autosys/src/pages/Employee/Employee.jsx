@@ -9,36 +9,43 @@ import ModalEditEmployee from '../../componets/Employee/EmployeeEdit'
 import ChangeStatus from '../../componets/Employee/EmployeeEnable'
 import Pagination from '../../componets/Pagination/usePagination'
 
-const DashboardEmployee = () => {
+const DashboardEmployee = ({numberParam}) => {
     const [employee, setEmployee] = useState([])
-
     const [body, setBody] = useState([])
     const { authToken } = useSession()
-
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        const fecthEmployee = async () => {
-            const number = searchParams.get("page") === undefined ? 0 : searchParams.get("page")
-            const response = await sendGet(getServerPath('employees/list/?page=' + number + '&size=10'), authToken);
+        const fetchEmployee = async () => {
+            let number = searchParams.get("page") === undefined ? 0 : searchParams.get("page")
+
+            if (number == null){
+                number = 0;
+            }
+            if (numberParam != null){
+                number = numberParam;
+                console.log(numberParam)
+            }
+
+            const [response] = await Promise.all([sendGet(getServerPath('employees/list/?page=' + number + '&size=10'), authToken)]);
             setEmployee(response?.body?.value)
             setBody(response?.body)
         }
 
-        fecthEmployee()
+        fetchEmployee();
     }, [authToken, searchParams])
 
     const status = (usStatus) => {
         if (usStatus === 1) {
-            return (<div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
-                <h2 class="text-sm font-normal">Enable</h2>
+            return (<div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                <h2 className="text-sm font-normal">Enable</h2>
             </div>
             )
         }
         if (usStatus === 0) {
             return (
-                <div class="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
-                    <h2 class="text-sm font-normal">Disable</h2>
+                <div className="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
+                    <h2 className="text-sm font-normal">Disable</h2>
                 </div>
             )
         }
@@ -97,11 +104,9 @@ const DashboardEmployee = () => {
                                         </tr>
                                     })}
                             </tbody>
-                            <Modal />
                         </table>
+                        <Modal />
                         <div className='container  mt-5'>
-
-
                             <Pagination
                                 nPages={body?.totalPages}
                                 currentPage={body?.currentPage}

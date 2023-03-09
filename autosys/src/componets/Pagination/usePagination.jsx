@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { NavLink, Link } from "react-router-dom";
-
 
 const Pagination = ({ nPages: totalPages, currentPage, totalItems }) => {
     const pageNumbers = []
@@ -10,51 +8,40 @@ const Pagination = ({ nPages: totalPages, currentPage, totalItems }) => {
 
         for (let i = currentPage; i <= currentPage + 3; i++) {
             if (totalPages < i) {
-
                 pageNumbers.push(i - 10)
                 console.log("final")
             } else {
-                pageNumbers.push(i)
+                pageNumbers.push(i + 1)
             }
-
-
         }
     }
+
     if (totalPages < 10) {
-        for (let i = 0; i <= totalPages; i++) {
-            pageNumbers.push(i)
+        for (let i = 0; i < totalPages; i++) {
+            pageNumbers.push(i + 1)
         }
     }
+
     if (currentPage <= totalPages) {
         for (let i = currentPage; i <= currentPage - 10; i++) {
             pageNumbers.push(i)
         }
     }
 
-
     const nextPage = () => {
         if (currentPage < totalPages) {
-
-
-            return (
-                <Link
-                    href={window.location.pathname + '?page=' + (currentPage + 1)}
-                 
-                >
-                </Link>
-            )
+            window.location.href = window.location.pathname + '?page=' + (currentPage + 1);
         }
     }
-    const prevPage = () => {
-        if (currentPage >= totalPages) {
-            window.location.reload(window.location.pathname + '?page=' + (currentPage - 1));
 
+    const prevPage = () => {
+        if (currentPage > 0) {
+            window.location.href = window.location.pathname + '?page=' + (currentPage - 1);
         }
     }
 
     const setCurrentPage = (number) => {
-       
-        window.location.reload(window.location.pathname + '?page=' + (number - 1));
+        window.location.href = window.location.pathname + '?page=' + (number);
     }
 
     const setFirstPage = () => {
@@ -72,7 +59,6 @@ const Pagination = ({ nPages: totalPages, currentPage, totalItems }) => {
             )
         }
     }
-
     const setLastPage = () => {
         if (currentPage < totalPages - 10) {
             return (
@@ -131,10 +117,9 @@ const Pagination = ({ nPages: totalPages, currentPage, totalItems }) => {
                 </button>
             </div>
 
-
             <br />
             <label className="text-gray-700 flex flex-row justify-center items-center gap-x-2 font-bold">
-                Page {currentPage} of {totalPages}
+                Page {currentPage + 1} of {totalPages}
 
             </label>
             <label className="text-gray-700 flex flex-row justify-center items-center gap-x-2 font-bold">

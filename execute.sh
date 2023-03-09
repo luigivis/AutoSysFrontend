@@ -68,6 +68,7 @@ echo "***************************************"
 echo "*++++++Executing BUILD and run ********"
 echo "***************************************"
 rm -rf node_modules/
+rm package-lock.json
 npm install
 npm audit fix --force
 
@@ -79,10 +80,10 @@ echo "***************************************"
 echo
 
 echo "Stop Module"
-pm2 stop $MODE-AutoSys-Frontend:7000
+pm2 stop $MODE-AutoSys-Frontend:$PORT
 
 echo "Stop Module"
-pm2 delete $MODE-AutoSys-Frontend:7000
+pm2 delete $MODE-AutoSys-Frontend:$PORT
 
 echo "Starting"
 pm2 start --name=$MODE-AutoSys-Front:$PORT npm -- start

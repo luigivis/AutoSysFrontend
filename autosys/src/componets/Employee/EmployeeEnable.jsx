@@ -17,26 +17,28 @@ export default function ChangeStatus(props) {
                 await sendGet(getServerPath('employees/changeStatus/' + props.empUuid), authToken);
             }
             window.location.reload(true);
-
-
         } catch (error) {
             console.log(error);
         }
-
     }
-
 
     return (
         <>
 
-            <button
+                {props.usStatus === 1 ? <button
+                    className="font-medium text-red-600 dark:text-blue-500 hover:underline"
+                    type="button"
+                    onClick={(handleSubmit)}
+                >
+                    Disable
+                </button> : <button
+                    className="font-medium text-green-800 hover:underline"
+                    type="button"
+                    onClick={(handleSubmit)}
+                >
+                    Enable
+                </button>}
 
-                className="font-medium text-red-600 dark:text-blue-500 hover:underline"
-                type="button"
-                onClick={(handleSubmit)}
-            >
-                {props.usStatus === 1 ? 'Disable' : 'Enable'}
-            </button>
         </>
     );
 }

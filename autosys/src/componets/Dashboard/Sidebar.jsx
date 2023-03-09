@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  RiHome3Line,
   RiMore2Fill,
   RiCloseFill,
 } from "react-icons/ri";
@@ -8,7 +7,7 @@ import { BsFillFileEarmarkBarGraphFill } from 'react-icons/bs';
 import { FaUserCircle, FaUsers, FaUserAlt } from 'react-icons/fa';
 import { HiHome } from 'react-icons/hi';
 import { sendGetLogOut } from "../../utils/commonFetch";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -23,6 +22,7 @@ const Sidebar = () => {
           <img
             src={require('../../assets/img/logo.png')}
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
+            alt={"Logo"}
           />
           <h1 className="text-xl text-white font-bold">Lapsys</h1>
         </div>
