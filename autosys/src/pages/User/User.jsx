@@ -22,7 +22,7 @@ export default function DashboardUser() {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const number = searchParams.get("page") === undefined ? searchParams.get("page") : 0
+            const number = searchParams.get("page") == null ? 0 : searchParams.get("page") 
             const response = await sendGet(getServerPath('users/list/?page=' + number + '&size=10'), authToken);
 
             setUsers(response?.body?.value)

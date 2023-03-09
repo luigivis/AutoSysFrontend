@@ -8,7 +8,6 @@ export default function ChangeStatus(props) {
     const { authToken } = useSession();
 
     const handleSubmit = async (event) => {
-        console.log("jhasasa")
         event.preventDefault();
         try {
             if (props.usStatus === 1) {
